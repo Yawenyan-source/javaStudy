@@ -4,18 +4,21 @@ import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 
 /**
- * 反射：无参，有参构造函数
+ * 反射如何给属性赋值
  * 一般情况下都是用Class.forName("")
  */
-class UserTest2 {
+class UserTest3 {
     public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException, NoSuchFieldException {
         Class<?> userClass = Class.forName("com.wen.rfspringboot.pojo.User");
-        /*
-         * 默认是执行无参构造函数
-         * */
+        Field[] fields = userClass.getDeclaredFields();
         User user = (User) userClass.getDeclaredConstructor().newInstance();
-        System.out.println(user);
-        User user1 = (User) userClass.getDeclaredConstructor(String.class, Integer.class).newInstance("wen", 1);
-        System.out.println(user1);
+        for (Field field : fields) {
+            System.out.println(field);
+        }
+        Field username = userClass.getDeclaredField("username");
+        //反射访问私有权限
+        username.setAccessible(true);
+        username.set(user, "wen");
+        System.out.println(user.getUsername());
     }
 }
