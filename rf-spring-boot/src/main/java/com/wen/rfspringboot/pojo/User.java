@@ -1,5 +1,7 @@
 package com.wen.rfspringboot.pojo;
 
+import com.wen.rfspringboot.annotation.wenName;
+
 public class User {
     private String username;
     private Integer age;
@@ -38,9 +40,11 @@ public class User {
                 '}';
     }
 
-    private void wen() {
+    @wenName
+    public void wen() {
         System.out.println("hello wen");
     }
+
 
     private Integer sum(Integer a, Integer b) {
         return a + b;
