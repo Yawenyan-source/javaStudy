@@ -4,6 +4,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 /**
+ * 反射调用方法
  * 一般情况下都是用Class.forName("")
  */
 class UserTest4 {
