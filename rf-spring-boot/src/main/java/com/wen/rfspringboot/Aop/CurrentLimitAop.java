@@ -23,17 +23,16 @@ public class CurrentLimitAop {
     @Around(value = "@annotation(com.wen.rfspringboot.annotation.WenCurrentLimit)")
     public Object around(ProceedingJoinPoint joinPoint) {
         try {
+            boolean b = rateLimiter.tryAcquire();
+            if (!b) {
+                return "访问人数过多，请稍后重试";
+            }
             System.out.println("环绕通知开始执行");
             Object result = joinPoint.proceed();
             System.out.println("环绕通知结束执行");
-            boolean b = rateLimiter.tryAcquire();
-            if (!b) {
-                return "访问人数过多";
-            }
             return result;
         } catch (Throwable throwable) {
             return "系统错误";
         }
-
     }
 }
