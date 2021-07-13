@@ -1,4 +1,4 @@
-package com.wen.threads;
+package com.wen.threads.days01;
 
 public class Thread01 extends Thread {
     /**

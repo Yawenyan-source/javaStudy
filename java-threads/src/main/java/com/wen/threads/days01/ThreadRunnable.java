@@ -1,4 +1,4 @@
-package com.wen.threads;
+package com.wen.threads.days01;
 
 /**
  * 方式二：实现Runnable接口创建线程
