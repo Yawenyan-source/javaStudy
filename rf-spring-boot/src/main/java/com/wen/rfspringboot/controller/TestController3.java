@@ -1,11 +1,13 @@
 package com.wen.rfspringboot.controller;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.annotation.Scope;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @Slf4j
+@Scope(value = "prototype")
 public class TestController3 {
     private int count = 0;
 
@@ -15,7 +17,7 @@ public class TestController3 {
      *
      * @return
      */
-    @GetMapping("count")
+    @GetMapping("/count")
     public synchronized String count() {
         try {
             log.info("<count>" + count++);
