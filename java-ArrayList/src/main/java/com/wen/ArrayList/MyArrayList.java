@@ -45,11 +45,26 @@ public class MyArrayList<T> {
         return (T) elementData[index];
     }
 
+    public boolean remove(T t) {
+        for (int i = 0; i < size; i++) {
+            if (elementData[i].equals(t)) {
+                //需要移动的元素个数
+                int numMoved = size - i - 1;
+                if (numMoved > 0) {
+                    System.arraycopy(elementData, i + 1, elementData, i, numMoved);
+                    elementData[--size] = null;
+                }
+            }
+        }
+        return false;
+    }
+
     public static void main(String[] args) {
         MyArrayList<String> stringMyArrayList = new MyArrayList<>();
-        for (int i = 0; i < 200; i++) {
+        for (int i = 0; i < 10; i++) {
             stringMyArrayList.add("wen" + i);
         }
+        stringMyArrayList.remove("wen2");
         for (int i = 0; i < stringMyArrayList.size; i++) {
             System.out.println(stringMyArrayList.get(i));
         }
