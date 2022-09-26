@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.wen.rfspringboot.manage.LogManage;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
@@ -22,7 +23,7 @@ import java.util.Objects;
 @Slf4j
 public class AopLog {
     private static final String START_TIME = "request-start";
-    private SimpleDateFormat sdf4 = new SimpleDateFormat("yyyy年MM月dd日HH时mm分ss秒");
+    private SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日HH时mm分ss秒");
     @Autowired
     private LogManage logManage;
 
@@ -43,7 +44,7 @@ public class AopLog {
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = Objects.requireNonNull(attributes).getRequest();
 
-        logManage.info("【请求 时间】：" + sdf4.format(new Date()));
+        logManage.info("【请求 时间】：" + sdf.format(new Date()));
         logManage.info("【请求 URL】：" + request.getRequestURL());
         logManage.info("【请求 IP】：" + request.getRemoteAddr());
         logManage.info("【类名 Class】：" + point.getSignature().getDeclaringTypeName());
@@ -56,6 +57,11 @@ public class AopLog {
 //        log.info("【请求 IP】：{}", request.getRemoteAddr());
 //        log.info("【类名 Class】：{}，【方法名 Method】：{}", point.getSignature().getDeclaringTypeName(), point.getSignature().getName());
 //        log.info("【请求参数 Args】：{}，", point.getArgs());
+    }
+
+    @After("log()")
+    public void afterLog(JoinPoint point) {
+        logManage.info("结束时间：" + sdf.format(new Date()));
     }
 
 }

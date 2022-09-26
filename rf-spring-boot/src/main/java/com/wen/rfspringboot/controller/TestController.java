@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class TestController {
 
+
     @GetMapping("/get")
     @WenCurrentLimit(name = "get", token = 1.0)
     public String get() {

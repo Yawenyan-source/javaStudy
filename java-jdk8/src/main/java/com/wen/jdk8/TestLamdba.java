@@ -37,7 +37,7 @@ public class TestLamdba {
             System.out.println(u.toString());
         });
         System.out.println("=============简写==============");
-        userList.sort(((o1, o2) -> o1.getAge() - o2.getAge()));
+        userList.sort((Comparator.comparingInt(User::getAge)));
 
         userList.forEach((u) -> {
             System.out.println(u.toString());
