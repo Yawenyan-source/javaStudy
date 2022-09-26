@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/java-ArrayList/java-ArrayList.iml" filepath="$PROJECT_DIR$/java-ArrayList/java-ArrayList.iml" />
+      <module fileurl="file://$PROJECT_DIR$/java-hashmap/java-hashmap.iml" filepath="$PROJECT_DIR$/java-hashmap/java-hashmap.iml" />
+      <module fileurl="file://$PROJECT_DIR$/java-jdk8/java-jdk8.iml" filepath="$PROJECT_DIR$/java-jdk8/java-jdk8.iml" />
+      <module fileurl="file://$PROJECT_DIR$/java-threads/java-threads.iml" filepath="$PROJECT_DIR$/java-threads/java-threads.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/javaStudy.iml" filepath="$PROJECT_DIR$/.idea/javaStudy.iml" />
+      <module fileurl="file://$PROJECT_DIR$/rf-spring-boot/rf-spring-boot.iml" filepath="$PROJECT_DIR$/rf-spring-boot/rf-spring-boot.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ssm/spring/spring.iml" filepath="$PROJECT_DIR$/ssm/spring/spring.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ssm/ssm.iml" filepath="$PROJECT_DIR$/ssm/ssm.iml" />
+    </modules>
+  </component>
+</project>
