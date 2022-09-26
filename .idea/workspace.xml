@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1024b161-de5a-4778-ad7d-5c3f09d4d08f" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/MyBatis/src/main/java/com/wen/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/MyBatis/src/main/java/com/wen/Main.java" afterDir="false" />
-    </list>
+    <list default="true" id="1024b161-de5a-4778-ad7d-5c3f09d4d08f" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -94,7 +92,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1664204084554</updated>
-      <workItem from="1664204086355" duration="844000" />
+      <workItem from="1664204086355" duration="1147000" />
     </task>
     <servers />
   </component>
