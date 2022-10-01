@@ -1,0 +1,8 @@
+<mapper namespace="com.wen.dao.IUserDao">
+    <select id="findAll" resultType="com.wen.pojo.User">
+        select * from user
+    </select>
+    <select id="findByCondition" resultType="com.wen.pojo.User" parameterType="com.wen.pojo.User">
+        select * from user where id = #{id} and username = #{username}
+    </select>
+</mapper>
