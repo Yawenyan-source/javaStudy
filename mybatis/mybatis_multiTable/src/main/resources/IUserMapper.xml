@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE com.wen.mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-com.wen.mapper.dtd">
+<com.wen.mapper namespace="com.wen.com.wen.mapper.IUserMapper">
+    <resultMap id="userOrderResultMap" type="user">
+        <id property="id" column="id"/>
+        <result property="username" column="username"/>
+        <result property="password" column="username"/>
+        <result property="birthday" column="birthday"/>
+        <collection property="orders" ofType="order">
+            <id property="id" column="oid"/>
+            <result property="orderTime" column="ordertime"/>
+            <result property="total" column="total"/>
+            <!--<result property="uid" column="uid"/>-->
+        </collection>
+    </resultMap>
+    <select id="findUserAndOrder" resultMap="userOrderResultMap">
+        select u.*, o.id as oid, o.ordertime, o.total, o.uid
+        from user u
+        left join orders o on u.id = o.uid;
+    </select>
+    <resultMap id="userRoleResultMap" type="user">
+        <result property="id" column="userid"/>
+        <result property="username" column="username"/>
+        <result property="password" column="username"/>
+        <result property="birthday" column="birthday"/>
+        <collection property="roles" ofType="role">
+            <id property="id" column="roleid"/>
+            <result property="roleName" column="rolename"/>
+            <result property="roleDesc" column="roleDesc"/>
+        </collection>
+    </resultMap>
+    <select id="findAllUserAndRole" resultMap="userRoleResultMap">
+        select *
+        from user u
+        left join sys_user_role sur on u.id = sur.userid
+        left join sys_role sr on sr.id = sur.roleid
+    </select>
+</com.wen.mapper>

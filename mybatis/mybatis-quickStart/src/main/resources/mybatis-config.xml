@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!--配置信息-->
+    <properties resource="jdbc.properties"/>
+    <!--给实体类全限定类名取别名-->
+    <typeAliases>
+        <!--给单独的实体起别名-->
+        <typeAlias type="com.wen.pojo.User" alias="user"/>
+        <!--给当前包下所有的类取别名，不区分大小写-->
+        <package name="com.wen.pojo"/>
+    </typeAliases>
+    <!--运行环境-->
+    <environments default="dev">
+        <environment id="dev">
+            <!--事务管理 : 当前事务交给JDBC进行管理-->
+            <transactionManager type="JDBC">
+            </transactionManager>
+            <!--当前使用mybatis提供的连接池-->
+            <dataSource type="POOLED">
+                <property name="driver" value="${jdbc.driver}"/>
+                <property name="url" value="${jdbc.url}"/>
+                <property name="username" value="${jdbc.username}"/>
+                <property name="password" value="${jdbc.password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+        <mapper resource="UserMapper.xml"/>
+    </mappers>
+</configuration>

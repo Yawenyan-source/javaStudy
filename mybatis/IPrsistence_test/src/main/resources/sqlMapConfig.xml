@@ -5,5 +5,5 @@
         <property name="username" value="root"/>
         <property name="password" value="root"/>
     </dataSource>
-    <mapper resource="UserMapper.xml"/>
+    <com.wen.mapper resource="UserMapper.xml"/>
 </configuration>

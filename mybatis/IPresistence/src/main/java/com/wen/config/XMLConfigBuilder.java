@@ -47,7 +47,7 @@ public class XMLConfigBuilder {
         druidDataSource.setPassword(properties.getProperty("password"));
         configuration.setDataSource(druidDataSource);
         
-        //mapper.xml解析
+        //com.wen.mapper.xml解析
         List<Element> mapperList = rootElement.selectNodes("//mapper");
         for (Element element : mapperList) {
             String mapperPath = element.attributeValue("resource");
