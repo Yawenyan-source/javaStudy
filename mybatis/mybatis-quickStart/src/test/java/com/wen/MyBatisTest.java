@@ -26,7 +26,7 @@ public class MyBatisTest {
         InputStream resourceAsStream = Resources.getResourceAsStream("mybatis-config.xml");
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(resourceAsStream);
         SqlSession sqlSession = sqlSessionFactory.openSession();
-        List<User> users = sqlSession.selectList("user.findAll");
+        List<User> users = sqlSession.selectList("com.wen.mapper.UserMapper.findAll");
         for (User user : users) {
             System.out.println(user);
         }
