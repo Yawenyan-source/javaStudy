@@ -7,7 +7,8 @@ package com.wen.ssm.proxy.dynamicProxy;
 public class JdkProxy {
     public static void main(String[] args) {
         //委托对象---委托方
-        RentingHouseImpl rentingHouse = new RentingHouseImpl();
+        IRentingHouse rentingHouse = new RentingHouseImpl();
+        System.out.println(rentingHouse.getClass());
         //从代理工厂获取代理对象
         IRentingHouse o = (IRentingHouse) ProxyFactory.getInstance().getJdkProxy(rentingHouse);
         o.rentingHouse();
