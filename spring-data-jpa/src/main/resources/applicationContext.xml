@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:jpa="http://www.springframework.org/schema/data/jpa" xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/data/jpa https://www.springframework.org/schema/data/jpa/spring-jpa.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+    <!--对spring和spring data jpa进行配置-->
+
+    <!--1、创建数据库连接池-->
+    <context:property-placeholder location="classpath:jdbc.properties"/>
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+    </bean>
+    <!--配置jpa中非常重要的对象。entityManagerFactory-->
+    <bean class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean" id="managerFactoryBean">
+        <!--配置数据源-->
+        <property name="dataSource" ref="dataSource"/>
+        <!--配置包扫描（pojo实体类所在的包）-->
+        <property name="packagesToScan" value="com.wen.pojo"/>
+        <!--指定jpa的具体实现，也就是hibernate-->
+        <property name="persistenceProvider">
+            <bean class="org.hibernate.jpa.HibernatePersistenceProvider"/>
+        </property>
+        <!--指定jpa的方言-->
+        <property name="jpaDialect">
+            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaDialect"/>
+        </property>
+        <!--配置具体provider,hibernate框架执行细节-->
+        <property name="jpaVendorAdapter">
+            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+                <!--配置数据表是否自动创建-->
+                <property name="generateDdl" value="false"/>
+                <!--指定数据库类型-->
+                <property name="database" value="MYSQL"/>
+                <!--配置数据库方言-->
+                <property name="databasePlatform" value="org.hibernate.dialect.MySQLDialect"/>
+                <!--配置是否显示sql-->
+                <property name="showSql" value="true"/>
+            </bean>
+        </property>
+    </bean>
+    <!--引用上面的entityManagerFactory
+        配置jpa的dao层细节
+    -->
+    <jpa:repositories base-package="com.wen.dao" entity-manager-factory-ref="managerFactoryBean"
+                      transaction-manager-ref="transactionManager"/>
+
+    <!--事务管理器配置-->
+    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="entityManagerFactory" ref="managerFactoryBean"/>
+    </bean>
+    <!--声明式事务配置-->
+<!--    <tx:annotation-driven/>-->
+    <!--配置spring包扫描-->
+    <context:component-scan base-package="com.wen"/>
+</beans>
