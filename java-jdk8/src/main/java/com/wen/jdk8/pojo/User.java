@@ -1,10 +1,26 @@
 package com.wen.jdk8.pojo;
 
 import java.util.Objects;
+import java.util.function.Function;
+import java.util.function.UnaryOperator;
 
 public class User {
     private String username;
     private Integer age;
+
+    public User() {
+    }
+
+    //public String say(SayHello sayHello) {
+    //    return sayHello.sayHello(this.username);
+    //}
+
+    public String say(UnaryOperator<String> sayHello) {
+        return sayHello.apply(this.username);
+    }
+    public String say(Function<String,String> sayHello) {
+        return sayHello.apply(this.username);
+    }
 
     public User(String username, Integer age) {
         this.username = username;
